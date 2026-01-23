@@ -1,0 +1,15 @@
+# IDE
+.vs/
+*.user
+*.slnx
+
+# Build
+bin/
+obj/
+
+# ASP.NET
+appsettings.Development.json
+MiniGrocery/Properties/launchSettings.json
+
+# HTTP scratch files
+*.http
