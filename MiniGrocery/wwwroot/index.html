@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Mini Grocery</title>
+</head>
+<body>
+
+    <h2>Products</h2>
+    <button onclick="loadProducts()">Load Products</button>
+    <ul id="products"></ul>
+
+    <h2>Place Order</h2>
+    <label>Product ID:</label>
+    <input type="number" id="productId" />
+    <br /><br />
+    <label>Quantity:</label>
+    <input type="number" id="quantity" />
+    <br /><br />
+    <button onclick="placeOrder()">Place Order</button>
+
+    <script>
+        const apiBaseUrl = "http://localhost:5111/api";
+
+        function loadProducts() {
+            fetch(`${apiBaseUrl}/products`)
+                .then(res => res.json())
+                .then(data => {
+                    const list = document.getElementById("products");
+                    list.innerHTML = "";
+                    data.forEach(p => {
+                        const li = document.createElement("li");
+                        li.innerText = `ID: ${p.id}, Name: ${p.name}, Price: ${p.price}, Stock: ${p.stock}`;
+                        list.appendChild(li);
+                    });
+                });
+        }
+
+        function placeOrder() {
+            const productId = document.getElementById("productId").value;
+            const quantity = document.getElementById("quantity").value;
+
+            fetch(`${apiBaseUrl}/orders`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    productId: parseInt(productId),
+                    quantity: parseInt(quantity)
+                })
+            })
+            .then(res => {
+                if (res.ok) {
+                    alert("Order placed successfully");
+                } else {
+                    alert("Order failed (insufficient stock or invalid product)");
+                }
+            });
+        }
+    </script>
+
+</body>
+</html>

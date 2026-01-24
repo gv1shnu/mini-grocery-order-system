@@ -3,15 +3,12 @@
 *.user
 *.slnx
 
-# Build
+# Build output
 bin/
 obj/
-
-# ASP.NET
-appsettings.Development.json
-MiniGrocery/Properties/launchSettings.json
 
 # HTTP scratch files
 *.http
 
+# Database
 *.db

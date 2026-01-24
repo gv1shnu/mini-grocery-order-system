@@ -11,14 +11,13 @@ and Entity Framework Core with SQLite.
 - Entity Framework Core
 - SQLite
 - C#
-- Git
 
 ---
 
 ## Features
 - View all products
 - View product by ID
-- Order management (coming next)
+- Order placement with stock validation
 - Database persistence using EF Core
 - Clean separation of concerns (Controllers, Repositories, Services)
 
@@ -31,9 +30,11 @@ and Entity Framework Core with SQLite.
 	├── Data/          → DbContext & database configuration
 	├── Migrations/    → Database schema changes
 	├── Models/        → Entity definitions (tables)
+	├── DTOs/          → Request data transfer objects
 	├── Repositories/  → Database access (EF Core)
+	├── wwwroot/       → Basic static HTML frontend
 	├── Services/      → Business logic & transactions
-	├── Frontend/      → Basic UI (Ionic + Angular)
+	├── Properties/    → Local launch configuration
 	├── Program.cs     → Application startup & DI setup
 ```
 
@@ -54,24 +55,33 @@ dotnet run
 
 ### 3. Test API Endpoints
 ```
-GET /api/products
-GET /api/products/{id}
+GET  /api/products
+GET  /api/products/{id}
+POST /api/orders
 ```
 
-## TODO
+### Frontend (Basic)
+
+Open in browser
+```
+http://localhost:5111/index.html
+```
+
+## Features
 
 ### Backend
-- [x] Project setup and clean structure
-- [x] Database models (Product, Order)
-- [x] EF Core configuration and migrations
-- [x] Seed initial product data
-- [x] Products API (GET /products)
-- [ ] Order placement API (POST /orders)
-- [ ] Order business logic with stock validation
-- [ ] Transaction handling for orders
+- Project setup and clean structure
+- Database models (Product, Order)
+- EF Core configuration and migrations
+- Seed initial product data
+- Products API (GET /products)
+- Order placement API (POST /orders)
+- Order business logic with stock validation
+- Transaction handling for orders
 
-### Frontend
-- [ ] Initialize Ionic + Angular project
-- [ ] Display product list
-- [ ] Place order from UI
-- [ ] Show success / failure messages
+### Frontend (Basic)
+- Implemented using a simple static HTML page
+- Lists products using the Products API
+- Allows placing orders using the Orders API
+- Displays success or failure messages
+- No UI or design focus as per requirements
