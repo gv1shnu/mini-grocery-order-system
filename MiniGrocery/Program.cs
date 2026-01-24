@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using MiniGrocery.Data;
 using MiniGrocery.Repositories;
+using MiniGrocery.Services;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -15,15 +16,16 @@ builder.Services.AddDbContext<AppDbContext>(
     );
 
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
+builder.Services.AddScoped<IOrderRepository, OrderRepository>();
+builder.Services.AddScoped<IOrderService, OrderService>();
 
 var app = builder.Build();
 
 //app.UseHttpsRedirection();
 
+app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
-
 app.MapControllers();
-
 app.Run();
