@@ -13,3 +13,5 @@ MiniGrocery/Properties/launchSettings.json
 
 # HTTP scratch files
 *.http
+
+*.db
