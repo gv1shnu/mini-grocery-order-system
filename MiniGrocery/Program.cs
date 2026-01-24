@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using MiniGrocery.Data;
+using MiniGrocery.Repositories;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,6 +13,8 @@ builder.Services.AddDbContext<AppDbContext>(
         builder.Configuration.GetConnectionString("DefaultConnection")
         )
     );
+
+builder.Services.AddScoped<IProductRepository, ProductRepository>();
 
 var app = builder.Build();
 
