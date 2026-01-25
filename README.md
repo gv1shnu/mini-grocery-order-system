@@ -61,9 +61,9 @@ GET  /api/products/{id}  →  Retrieve a specific product by ID
 ```
 ```
 POST /api/orders         →  Place an order for a product
-```
+
 Request body
-```{
+{
   "productId": 1,
   "quantity": 2
 }
