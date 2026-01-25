@@ -14,15 +14,6 @@ and Entity Framework Core with SQLite.
 
 ---
 
-## Features
-- View all products
-- View product by ID
-- Order placement with stock validation
-- Database persistence using EF Core
-- Clean separation of concerns (Controllers, Repositories, Services)
-
----
-
 ## Project Structure
 ```text
 	MiniGrocery/
@@ -44,7 +35,7 @@ and Entity Framework Core with SQLite.
 
 ### 1. Clone the repository
 ```bash
-git clone <repo-url>
+git clone https://github.com/gv1shnu/mini-grocery-order-system
 cd mini-grocery-order-system
 ```
 
@@ -53,35 +44,45 @@ cd mini-grocery-order-system
 dotnet run
 ```
 
-### 3. Test API Endpoints
-```
-GET  /api/products
-GET  /api/products/{id}
-POST /api/orders
-```
 
-### Frontend (Basic)
+### 3. Frontend (Basic)
 
 Open in browser
 ```
 http://localhost:5111/index.html
 ```
 
-## Features
 
-### Backend
-- Project setup and clean structure
-- Database models (Product, Order)
-- EF Core configuration and migrations
-- Seed initial product data
-- Products API (GET /products)
-- Order placement API (POST /orders)
-- Order business logic with stock validation
-- Transaction handling for orders
+## API explanation
+```
+GET  /api/products       →  Retrieve all available products
+GET  /api/products/{id}  →  Retrieve a specific product by ID
 
-### Frontend (Basic)
-- Implemented using a simple static HTML page
-- Lists products using the Products API
-- Allows placing orders using the Orders API
-- Displays success or failure messages
-- No UI or design focus as per requirements
+```
+```
+POST /api/orders         →  Place an order for a product
+```
+Request body
+```{
+  "productId": 1,
+  "quantity": 2
+}
+```
+
+## Responsibility by layer
+
+### 1. Controllers
+- Handle HTTP requests and responses
+- Perform basic request validation
+- Delegate processing to services only
+
+### 2. Services
+- Validate stock availability
+- Handle order placement logic
+- Manage transactions
+
+### 3. Repositories
+- Encapsulate database access
+- Perform CRUD operations only
+
+
