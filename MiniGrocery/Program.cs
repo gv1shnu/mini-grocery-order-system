@@ -30,3 +30,6 @@ app.UseRouting();
 app.UseAuthorization();
 app.MapControllers();
 app.Run();
+
+// Exposed so the integration tests can boot the real application via WebApplicationFactory.
+public partial class Program { }
