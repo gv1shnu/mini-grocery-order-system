@@ -3,11 +3,10 @@ using MiniGrocery.Data;
 using MiniGrocery.Repositories;
 using MiniGrocery.Services;
 
-
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
 builder.Services.AddControllers();
+builder.Services.AddProblemDetails();
 
 builder.Services.AddDbContext<AppDbContext>(
     options => options.UseSqlite(
@@ -15,13 +14,15 @@ builder.Services.AddDbContext<AppDbContext>(
         )
     );
 
+builder.Services.AddSingleton(TimeProvider.System);
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<IOrderRepository, OrderRepository>();
 builder.Services.AddScoped<IOrderService, OrderService>();
 
 var app = builder.Build();
 
-//app.UseHttpsRedirection();
+app.UseExceptionHandler();
+app.UseStatusCodePages();
 
 app.UseStaticFiles();
 app.UseRouting();
