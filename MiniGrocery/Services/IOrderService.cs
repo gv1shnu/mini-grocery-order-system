@@ -4,6 +4,6 @@ namespace MiniGrocery.Services
 {
     public interface IOrderService
     {
-        Task<bool> PlaceOrderAsync(OrderRequestDto request);
+        Task<PlaceOrderResult> PlaceOrderAsync(OrderRequestDto request);
     }
 }
